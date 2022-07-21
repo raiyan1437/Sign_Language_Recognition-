@@ -108,6 +108,7 @@ def app():
 
                 #input video
                 input_video_file_path = file
+                st.video(video_file)
                 # Perform Single Prediction on the Test Video.
                 predict_single_actionlstm(video_file, SEQUENCE_LENGTH)
 
