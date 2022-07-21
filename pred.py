@@ -7,7 +7,7 @@ import keras.preprocessing
 import math
 import random
 
-"""def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
+def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     '''
     This function will perform single action recognition prediction on a video using the LRCN model.
     Args:
@@ -20,7 +20,7 @@ import random
     predicted_class_name = ''
 
     # Passing the  pre-processed frames to the model and get the predicted probabilities.
-    predicted_labels_probabilities =  model.predict(video_file_path)[0]
+    predicted_labels_probabilities =  model.predict(video_bytes)[0]
     #st.write(predicted_labels_probabilities)
     
     # Get the index of class with highest probability.
@@ -31,7 +31,7 @@ import random
     predicted_class_name = CLASSES_LIST[predicted_label]
     
     # Display the predicted action along with the prediction confidence.
-    st.wrtie(f'Action Predicted: {predicted_class_name}\nConfidence: {predicted_labels_probabilities[predicted_label]}')"""
+    st.wrtie(f'Action Predicted: {predicted_class_name}\nConfidence: {predicted_labels_probabilities[predicted_label]}')
         
        
 def app():
@@ -58,7 +58,7 @@ def app():
                 #read video & frames from upload
                 video_file = open('Copy of Copy of 62113.mp4', 'rb')            
                 video_bytes = video_file.read()
-                
+                st.video(video_file)
                 # Perform Single Prediction on the Test Video.
                 #predict_single_actionlstm(video_bytes, SEQUENCE_LENGTH)
                 #st.video(video_bytes)
