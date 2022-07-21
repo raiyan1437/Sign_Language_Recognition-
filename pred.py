@@ -61,7 +61,8 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     # Get the class name using the retrieved index.
     predicted_class_name = CLASSES_LIST[predicted_label]
     # Display the predicted action along with the prediction confidence.
-    st.write(f'Action Predicted : {predicted_class_name}\nConfidence : {predicted_labels_probabilities[predicted_label]}')
+    st.write(f'Action Predicted : {predicted_class_name}')
+    st.write(f'Confidence : {predicted_labels_probabilities[predicted_label]}')
     # Release the VideoCapture object. 
     video_reader.release()
         
