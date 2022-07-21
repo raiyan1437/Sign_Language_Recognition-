@@ -6,7 +6,7 @@ import numpy as np
 import keras.preprocessing
 import math
 import random
-import opencv as cv2
+import cv2
 
 
 def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
