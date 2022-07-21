@@ -59,6 +59,8 @@ def app():
                 video_file = open('Copy of Copy of 62113.mp4', 'rb')            
                 video_bytes = video_file.read()
                 st.video(video_file)
+                st.video(video_file)
+                st.video(video_file)
                 # Perform Single Prediction on the Test Video.
                 #predict_single_actionlstm(video_bytes, SEQUENCE_LENGTH)
                 
