@@ -4,7 +4,6 @@ import tensorflow as tf
 from PIL import Image, ImageOps
 import numpy as np
 import keras.preprocessing
-import cv2
 import math
 import random
 
