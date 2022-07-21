@@ -56,7 +56,7 @@ def app():
                 CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
                 
                 #read video & frames from upload
-                video_file = open('file', 'rb')            
+                video_file = open('Copy of Copy of 62113.mp4', 'rb')            
                 video_bytes = video_file.read()
                 
                 # Perform Single Prediction on the Test Video.
