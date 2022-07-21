@@ -14,26 +14,26 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     video_file_path:  The path of the video stored in the disk on which the action recognition is to be performed.
     SEQUENCE_LENGTH:  The fixed number of frames of a video that can be passed to the model as one sequence.
     '''  
+    CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
+    
     # Initialize a variable to store the predicted action being performed in the video.
     predicted_class_name = ''
 
     # Passing the  pre-processed frames to the model and get the predicted probabilities.
-    predicted_labels_probabilities =  convlstm_model.predict(video_bytes)[0]
-    print(predicted_labels_probabilities)
+    predicted_labels_probabilities =  model.predict(video_file_path)[0]
+    #st.write(predicted_labels_probabilities)
     
     # Get the index of class with highest probability.
     predicted_label = np.argmax(predicted_labels_probabilities)
-    print(predicted_labels_probabilities)
+    #st.write(predicted_labels_probabilities)
 
     # Get the class name using the retrieved index.
     predicted_class_name = CLASSES_LIST[predicted_label]
     
     # Display the predicted action along with the prediction confidence.
-    print(f'Action Predicted: {predicted_class_name}\nConfidence: {predicted_labels_probabilities[predicted_label]}')
+    st.wrtie(f'Action Predicted: {predicted_class_name}\nConfidence: {predicted_labels_probabilities[predicted_label]}')
         
-    # Release the VideoCapture object. 
-    video_reader.release()
-
+       
 def app():
     with st.spinner('Model is being loaded..'):
         model = load_model()
@@ -47,20 +47,27 @@ def app():
     else:
         if st.button("Predict"):
             try:
+                #CONVO+LSTM MODEL
+                
+                # Specify the height and width to which each video frame will be resized in our dataset.
+                IMAGE_HEIGHT , IMAGE_WIDTH = 64, 64
+                SEQUENCE_LENGTH = 25
+                
+                # Specify the list containing the names of the classes used for training. Feel free to choose any set of classes.
+                CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
+                
+                #read video & frames from upload
                 video_file = open('file', 'rb')            
                 video_bytes = video_file.read()
                 
+                # Perform Single Prediction on the Test Video.
+                predict_single_actionlstm(video_bytes, SEQUENCE_LENGTH)
                 st.video(video_bytes)
                 #vid = Video.open(file)            
                 #st.video(vid, use_column_width=True)
                 #test_vid = tf.image.resize(pic, [64, 64])
                 #img = keras.preprocessing.image.img_to_array(test_img)
                 #img = np.expand_dims(img, axis=0)/*
-                cnn = model.predict(video_bytes)
-                if cnn[0][0] == 1:
-                    pred = "It's a DOG"
-                else:
-                    pred = "It's a CAT"
                 st.success(pred)
             except:
                 st.error("Invalid Video Type For This Model")
