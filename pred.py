@@ -19,6 +19,7 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     # Specify the list containing the names of the classes used for training. Feel free to choose any set of classes.
     CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
     IMAGE_HEIGHT , IMAGE_WIDTH = 64, 64
+    model = load_model()
     # Initialize the VideoCapture object to read from the video file.
     st.write("function")
     video_reader = cv2.VideoCapture('Copy of Copy of 62113.mp4')
@@ -64,7 +65,7 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
         frames_list.append(normalized_frame)
     st.write("before pred")
     # Passing the  pre-processed frames to the model and get the predicted probabilities.
-    predicted_labels_probabilities =  convlstm_model.predict(np.expand_dims(frames_list, axis = 0))[0]
+    predicted_labels_probabilities =  model.predict(np.expand_dims(frames_list, axis = 0))[0]
     print(predicted_labels_probabilities)
     
     # Get the index of class with highest probability.
