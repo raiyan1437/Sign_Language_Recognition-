@@ -64,10 +64,10 @@ def app():
                 #predict_single_actionlstm(video_bytes, SEQUENCE_LENGTH)
                 
                 CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
-                st.video(video_file)
+                
                 # Initialize a variable to store the predicted action being performed in the video.
                 predicted_class_name = ''
-                st.video(video_file)
+                
                 # Passing the  pre-processed frames to the model and get the predicted probabilities.
                 predicted_labels_probabilities =  model.predict(video_file)[0]
                 st.video(video_file)
