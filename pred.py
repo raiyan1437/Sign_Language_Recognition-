@@ -20,7 +20,7 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
     # Initialize the VideoCapture object to read from the video file.
     video_reader = cv2.VideoCapture(video_file_path)
-
+    st.video(video_file)
     # Get the width and height of the video.
     original_video_width = int(video_reader.get(cv2.CAP_PROP_FRAME_WIDTH))
     original_video_height = int(video_reader.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -36,7 +36,7 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
 
     # Calculate the interval after which frames will be added to the list.
     skip_frames_window = max(int(video_frames_count/SEQUENCE_LENGTH),1)
-
+    st.video(video_file)
     # Iterating the number of times equal to the fixed length of sequence.
     for frame_counter in range(SEQUENCE_LENGTH):
 
@@ -58,7 +58,7 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
         
         # Appending the pre-processed frame into the frames list
         frames_list.append(normalized_frame)
-
+    st.video(video_file)
     # Passing the  pre-processed frames to the model and get the predicted probabilities.
     predicted_labels_probabilities =  convlstm_model.predict(np.expand_dims(frames_list, axis = 0))[0]
     print(predicted_labels_probabilities)
@@ -108,7 +108,7 @@ def app():
 
                 #input video
                 input_video_file_path = file
-                st.video(video_file)
+                
                 # Perform Single Prediction on the Test Video.
                 predict_single_actionlstm(video_file, SEQUENCE_LENGTH)
 
