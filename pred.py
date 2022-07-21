@@ -20,7 +20,7 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
     # Initialize the VideoCapture object to read from the video file.
     st.write("function")
-    video_reader = cv2.VideoCapture(video_file_path)
+    video_reader = cv2.VideoCapture('Copy of Copy of 62113.mp4')
     
     st.write("read")
     
