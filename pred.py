@@ -51,23 +51,16 @@ def app():
                 # Specify the height and width to which each video frame will be resized in our dataset.
                 IMAGE_HEIGHT , IMAGE_WIDTH = 64, 64
                 SEQUENCE_LENGTH = 25
-                
                 # Specify the list containing the names of the classes used for training. Feel free to choose any set of classes.
                 CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
-                
                 #read video & frames from upload
                 video_file = open('Copy of Copy of 62113.mp4', 'rb')            
                 video_bytes = video_file.read()
                 st.video(video_file)
-                
                 # Perform Single Prediction on the Test Video.
                 #predict_single_actionlstm(video_bytes, SEQUENCE_LENGTH)
-                
-                CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
-                
                 # Initialize a variable to store the predicted action being performed in the video.
                 predicted_class_name = ''
-                
                 # Passing the  pre-processed frames to the model and get the predicted probabilities.
                 predicted_labels_probabilities =  model.predict(video_file)[0]
                 st.video(video_file)
