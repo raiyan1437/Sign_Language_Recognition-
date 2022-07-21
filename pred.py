@@ -54,14 +54,14 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     #st.write("before pred")
     # Passing the  pre-processed frames to the model and get the predicted probabilities.
     predicted_labels_probabilities =  model.predict(np.expand_dims(frames_list, axis = 0))[0]
-    st.write(predicted_labels_probabilities)    
+    #st.write(predicted_labels_probabilities)    
     # Get the index of class with highest probability.
     predicted_label = np.argmax(predicted_labels_probabilities)
     st.write(predicted_label)
     # Get the class name using the retrieved index.
     predicted_class_name = CLASSES_LIST[predicted_label]
     # Display the predicted action along with the prediction confidence.
-    st.write(f'Action Predicted: {predicted_class_name}\nConfidence: {predicted_labels_probabilities[predicted_label]}')
+    st.write(f'Action Predicted : {predicted_class_name}\nConfidence : {predicted_labels_probabilities[predicted_label]}')
     # Release the VideoCapture object. 
     video_reader.release()
         
