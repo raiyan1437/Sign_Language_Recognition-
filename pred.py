@@ -10,21 +10,17 @@ def app():
     with st.spinner('Model is being loaded..'):
         model = load_model()
     st.subheader("""
-    **NOTE:** This app work best only when you uplode image of a Cat or Dog.
-    """)
-    file = st.file_uploader(
-        "Please upload a Video of ASL Sign which You want to Translate", type=["MP4", "MOV", "MKV", "WMV", "MPEG-2"])
+    **NOTE:** This app work best only when you uplode image of a Cat or Dog.""")
+    file = st.file_uploader("Please upload a Video of ASL Sign which You want to Translate", type=["MP4", "MOV", "MKV", "WMV", "MPEG-2"])
     st.set_option('deprecation.showfileUploaderEncoding', False)
 
     if file is None:
-        st.write("""
-        Please upload an Video file
-        """)
+        st.write("""Please upload an Video file""")
     else:
         if st.button("Predict"):
             try:
-		        video_file = open('myvideo.mp4', 'rb')
-		        video_bytes = video_file.read()
+                video_file = open('myvideo.mp4', 'rb')            
+                video_bytes = video_file.read()
                 st.video(video_bytes)
                 #vid = Video.open(file)            
                 #st.video(vid, use_column_width=True)
