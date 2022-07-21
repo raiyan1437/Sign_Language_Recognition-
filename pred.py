@@ -22,7 +22,7 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     model = load_model()
     # Initialize the VideoCapture object to read from the video file.
     #st.write("function")
-    video_reader = cv2.VideoCapture('help.mp4')
+    video_reader = cv2.VideoCapture('drink.mp4')
     #st.write("read")
     # Get the width and height of the video.
     original_video_width = int(video_reader.get(cv2.CAP_PROP_FRAME_WIDTH))
@@ -57,7 +57,7 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     st.write(predicted_labels_probabilities)    
     # Get the index of class with highest probability.
     predicted_label = np.argmax(predicted_labels_probabilities)
-    st.write(predicted_labels_probabilities)
+    st.write(predicted_label)
     # Get the class name using the retrieved index.
     predicted_class_name = CLASSES_LIST[predicted_label]
     # Display the predicted action along with the prediction confidence.
@@ -86,7 +86,7 @@ def app():
                 # Specify the list containing the names of the classes used for training. Feel free to choose any set of classes.
                 CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
                 #read video & frames from upload
-                video_file = open('help.mp4', 'rb')            
+                video_file = open('drink.mp4', 'rb')            
                 video_bytes = video_file.read()
 
                 #CONVO+LSTM MODEL
