@@ -57,7 +57,7 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     #st.write(predicted_labels_probabilities)    
     # Get the index of class with highest probability.
     predicted_label = np.argmax(predicted_labels_probabilities)
-    st.write(predicted_label)
+    #st.write(predicted_label)
     # Get the class name using the retrieved index.
     predicted_class_name = CLASSES_LIST[predicted_label]
     # Display the predicted action along with the prediction confidence.
