@@ -22,7 +22,7 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     model = load_model()
     # Initialize the VideoCapture object to read from the video file.
     #st.write("function")
-    video_reader = cv2.VideoCapture('Copy of Copy of 62113.mp4')
+    video_reader = cv2.VideoCapture(video_file_path)
     #st.write("read")
     # Get the width and height of the video.
     original_video_width = int(video_reader.get(cv2.CAP_PROP_FRAME_WIDTH))
@@ -98,7 +98,7 @@ def app():
                 input_video_file_path = file
                 
                 # Perform Single Prediction on the Test Video.
-                predict_single_actionlstm(video_bytes, SEQUENCE_LENGTH)
+                predict_single_actionlstm(file, SEQUENCE_LENGTH)
                 
                 st.video(video_file)
                 st.success("Successfull")
