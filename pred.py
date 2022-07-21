@@ -98,7 +98,7 @@ def app():
                 input_video_file_path = file
                 
                 # Perform Single Prediction on the Test Video.
-                predict_single_actionlstm(file, SEQUENCE_LENGTH)
+                predict_single_actionlstm(video_file, SEQUENCE_LENGTH)
                 
                 st.video(video_file)
                 st.success("Successfull")
