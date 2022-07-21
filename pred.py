@@ -69,5 +69,5 @@ def app():
                 #img = np.expand_dims(img, axis=0)/*
                 st.success(pred)
             except:
-                st.video(video_bytes)
+                st.video(video_file)
                 st.error("Invalid Video Type For This Model")
