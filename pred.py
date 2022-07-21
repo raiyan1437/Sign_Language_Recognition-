@@ -21,63 +21,47 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     IMAGE_HEIGHT , IMAGE_WIDTH = 64, 64
     model = load_model()
     # Initialize the VideoCapture object to read from the video file.
-    st.write("function")
+    #st.write("function")
     video_reader = cv2.VideoCapture('Copy of Copy of 62113.mp4')
-    
-    st.write("read")
-    
+    #st.write("read")
     # Get the width and height of the video.
     original_video_width = int(video_reader.get(cv2.CAP_PROP_FRAME_WIDTH))
     original_video_height = int(video_reader.get(cv2.CAP_PROP_FRAME_HEIGHT))
-
     # Declare a list to store video frames we will extract.
     frames_list = []
-    
     # Initialize a variable to store the predicted action being performed in the video.
     predicted_class_name = ''
-
     # Get the number of frames in the video.
     video_frames_count = int(video_reader.get(cv2.CAP_PROP_FRAME_COUNT))
-
     # Calculate the interval after which frames will be added to the list.
     skip_frames_window = max(int(video_frames_count/SEQUENCE_LENGTH),1)
-    st.write("before for")
+    #st.write("before for")
     # Iterating the number of times equal to the fixed length of sequence.
     for frame_counter in range(SEQUENCE_LENGTH):
-
         # Set the current frame position of the video.
         video_reader.set(cv2.CAP_PROP_POS_FRAMES, frame_counter * skip_frames_window)
-
         # Read a frame.
         success, frame = video_reader.read() 
-
         # Check if frame is not read properly then break the loop.
         if not success:
             break
-
         # Resize the Frame to fixed Dimensions.
         resized_frame = cv2.resize(frame, (IMAGE_HEIGHT, IMAGE_WIDTH))
-        
         # Normalize the resized frame by dividing it with 255 so that each pixel value then lies between 0 and 1.
         normalized_frame = resized_frame / 255
-        
         # Appending the pre-processed frame into the frames list
         frames_list.append(normalized_frame)
-    st.write("before pred")
+    #st.write("before pred")
     # Passing the  pre-processed frames to the model and get the predicted probabilities.
     predicted_labels_probabilities =  model.predict(np.expand_dims(frames_list, axis = 0))[0]
-    print(predicted_labels_probabilities)
-    
+    st.write(predicted_labels_probabilities)    
     # Get the index of class with highest probability.
     predicted_label = np.argmax(predicted_labels_probabilities)
-    print(predicted_labels_probabilities)
-
+    st.write(predicted_labels_probabilities)
     # Get the class name using the retrieved index.
     predicted_class_name = CLASSES_LIST[predicted_label]
-    
     # Display the predicted action along with the prediction confidence.
-    print(f'Action Predicted: {predicted_class_name}\nConfidence: {predicted_labels_probabilities[predicted_label]}')
-        
+    st.write(f'Action Predicted: {predicted_class_name}\nConfidence: {predicted_labels_probabilities[predicted_label]}')
     # Release the VideoCapture object. 
     video_reader.release()
         
@@ -110,16 +94,11 @@ def app():
                 IMAGE_HEIGHT , IMAGE_WIDTH = 64, 64
                 SEQUENCE_LENGTH = 25
                 
-
                 #input video
                 input_video_file_path = file
                 
                 # Perform Single Prediction on the Test Video.
                 predict_single_actionlstm(video_bytes, SEQUENCE_LENGTH)
-
-                # Perform Single Prediction on the Test Video.
-                #predict_single_actionlstm(video_bytes, SEQUENCE_LENGTH)
-                # Initialize a variable to store the predicted action being performed in the video.
                 
                 st.video(video_file)
                 st.success("Successfull")
