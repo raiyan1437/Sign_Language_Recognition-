@@ -9,7 +9,6 @@ import keras.preprocessing
 def app():
 	
     	with st.spinner('Model is being loaded..'):
-		a
         	model = load_model()
     		st.subheader("""
     		**NOTE:** This app work best only when you uplode image of a Cat or Dog.
