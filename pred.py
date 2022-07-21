@@ -20,7 +20,7 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     predicted_class_name = ''
 
     # Passing the  pre-processed frames to the model and get the predicted probabilities.
-    predicted_labels_probabilities =  model.predict(video_bytes)[0]
+    predicted_labels_probabilities =  model.predict(video_file_path)[0]
     #st.write(predicted_labels_probabilities)
     
     # Get the index of class with highest probability.
@@ -60,8 +60,8 @@ def app():
                 video_bytes = video_file.read()
                 st.video(video_file)
                 # Perform Single Prediction on the Test Video.
-                #predict_single_actionlstm(video_bytes, SEQUENCE_LENGTH)
-                #st.video(video_bytes)
+                predict_single_actionlstm(video_bytes, SEQUENCE_LENGTH)
+                st.video(video_bytes)
                 #vid = Video.open(file)            
                 #st.video(vid, use_column_width=True)
                 #test_vid = tf.image.resize(pic, [64, 64])
@@ -69,5 +69,5 @@ def app():
                 #img = np.expand_dims(img, axis=0)/*
                 st.success("Successfull")
             except:
-                st.video(video_file)
+                #st.video(video_file)
                 st.error("Invalid Video Type For This Model")
