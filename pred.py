@@ -11,7 +11,7 @@ def app():
         model = load_model()
     st.subheader("""
     **NOTE:** This app work best only when you uplode image of a Cat or Dog.""")
-    file = st.file_uploader("Please upload a Video of ASL Sign which You want to Translate", type=["MP4", "MOV", "MKV", "WMV", "MPEG-2"])
+    file = st.file_uploader("Please upload a Video of ASL Sign which You want to Translate")
     st.set_option('deprecation.showfileUploaderEncoding', False)
 
     if file is None:
