@@ -37,10 +37,9 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
 def app():
     with st.spinner('Model is being loaded..'):
         model = load_model()
-    st.subheader("""
-    **NOTE:** This app work best only when you uplode image of a Cat or Dog.""")
+    st.subheader("""**NOTE:** This app work best only when you uplode Video of ASL.""")
     file = st.file_uploader("Please upload a Video of ASL Sign which You want to Translate")
-    st.set_option('deprecation.showfileUploaderEncoding', True)
+    st.set_option('deprecation.showfileUploaderEncoding', False)
 
     if file is None:
         st.write("""Please upload an Video file""")
@@ -70,4 +69,5 @@ def app():
                 #img = np.expand_dims(img, axis=0)/*
                 st.success(pred)
             except:
+                st.video(video_bytes)
                 st.error("Invalid Video Type For This Model")
