@@ -66,7 +66,8 @@ def app():
                 # Initialize a variable to store the predicted action being performed in the video.
                 predicted_class_name = ''
                 # Passing the  pre-processed frames to the model and get the predicted probabilities.
-                predicted_labels_probabilities =  model.predict(video_bytes)[0]
+                predicted_labels_probabilities =  model.predict(video_file)[0]
+                st.video(video_file)
                 #st.write(predicted_labels_probabilities)
                 # Get the index of class with highest probability.
                 predicted_label = np.argmax(predicted_labels_probabilities)
@@ -75,8 +76,8 @@ def app():
                 predicted_class_name = CLASSES_LIST[predicted_label]
                 # Display the predicted action along with the prediction confidence.
                 st.wrtie(f'Action Predicted: {predicted_class_name}\nConfidence: {predicted_labels_probabilities[predicted_label]}')
-    
-                st.video(video_bytes)
+                
+                st.video(video_file)
                 #vid = Video.open(file)            
                 #st.video(vid, use_column_width=True)
                 #test_vid = tf.image.resize(pic, [64, 64])
