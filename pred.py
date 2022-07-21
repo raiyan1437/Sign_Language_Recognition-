@@ -8,7 +8,6 @@ import math
 import random
 import cv2
 
-
 def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     '''
     This function will perform single action recognition prediction on a video using the LRCN model.
@@ -20,6 +19,7 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     # Specify the list containing the names of the classes used for training. Feel free to choose any set of classes.
     CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
     # Initialize the VideoCapture object to read from the video file.
+    st.write("function")
     video_reader = cv2.VideoCapture(video_file_path)
     
     st.write("read")
@@ -113,7 +113,7 @@ def app():
                 input_video_file_path = file
                 
                 # Perform Single Prediction on the Test Video.
-                predict_single_actionlstm(video_file, SEQUENCE_LENGTH)
+                predict_single_actionlstm(video_bytes, SEQUENCE_LENGTH)
 
                 # Perform Single Prediction on the Test Video.
                 #predict_single_actionlstm(video_bytes, SEQUENCE_LENGTH)
