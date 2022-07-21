@@ -67,7 +67,7 @@ def app():
                 #test_vid = tf.image.resize(pic, [64, 64])
                 #img = keras.preprocessing.image.img_to_array(test_img)
                 #img = np.expand_dims(img, axis=0)/*
-                st.success(pred)
+                st.success("Successfull")
             except:
-                st.video(video_file)
+                #st.video(video_file)
                 st.error("Invalid Video Type For This Model")
