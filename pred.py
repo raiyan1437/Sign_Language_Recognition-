@@ -21,11 +21,11 @@ def app():
 				video_file = open(file, 'rb')
 	        		video_bytes = video_file.read()
                 		st.video(video_bytes)
-                #vid = Video.open(file)            
-                #st.video(vid, use_column_width=True)
-                #test_vid = tf.image.resize(pic, [64, 64])
-                #img = keras.preprocessing.image.img_to_array(test_img)
-                #img = np.expand_dims(img, axis=0)/*
+                		#vid = Video.open(file)            
+                		#st.video(vid, use_column_width=True)
+               			#test_vid = tf.image.resize(pic, [64, 64])
+               			#img = keras.preprocessing.image.img_to_array(test_img)
+               			#img = np.expand_dims(img, axis=0)/*
                 		cnn = model.predict(video_bytes)
                 			if cnn[0][0] == 1:
                     				pred = "It's a DOG"
