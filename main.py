@@ -11,8 +11,6 @@ pages = {
     "About": about
 }
 
-
-
 st.sidebar.title("Navigation")
 page = st.sidebar.radio("Pages", list(pages.keys()))
 if page == None:
