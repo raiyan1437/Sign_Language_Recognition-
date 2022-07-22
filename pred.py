@@ -15,15 +15,14 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     video_file_path:  The path of the video stored in the disk on which the action recognition is to be performed.
     SEQUENCE_LENGTH:  The fixed number of frames of a video that can be passed to the model as one sequence.
     '''
-
     # Specify the list containing the names of the classes used for training. Feel free to choose any set of classes.
     CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
     IMAGE_HEIGHT , IMAGE_WIDTH = 64, 64
     model = load_model()
     # Initialize the VideoCapture object to read from the video file.
     #st.write("function")
-    #video_reader = cv2.VideoCapture('help.mp4')
-    video_reader = video_file_path
+    video_reader = cv2.VideoCapture(video_file_path)
+    #video_reader = video_file_path
     #st.video(video_file)
     #st.write("read")
     # Get the width and height of the video.
@@ -98,13 +97,14 @@ def app():
                 SEQUENCE_LENGTH = 25
                 
                 #input video
-               # input_video_file_path = file
-                st.video(video_bytes)
-                # Perform Single Prediction on the Test Video.
-                predict_single_actionlstm(video_bytes, SEQUENCE_LENGTH)
+                #input_video_file_path = file
                 
+                # Perform Single Prediction on the Test Video.
+                predict_single_actionlstm("wait.mp4", SEQUENCE_LENGTH)
+                st.video(video_bytes)
+                st.video(video_file)
                 #st.video(video_file)
                 st.success("Successfull")
-                st.video(video_bytes)
+                #st.video(video_bytes)
             except:
                 st.error("Invalid Video Type For This Model")
