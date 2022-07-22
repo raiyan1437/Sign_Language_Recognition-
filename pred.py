@@ -89,7 +89,7 @@ def app():
                 # Specify the list containing the names of the classes used for training. Feel free to choose any set of classes.
                 CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
                 #read video & frames from upload
-                video_file = open(f, 'rb')            
+                video_file = open(f.name, 'rb')            
                 video_bytes = video_file.read()
                 
                 tfile = tempfile.NamedTemporaryFile(delete=False) 
@@ -105,7 +105,7 @@ def app():
                 
                 # Perform Single Prediction on the Test Video.
                 predict_single_actionlstm(tfile.name, SEQUENCE_LENGTH)
-                #st.video(video_bytes)
+                st.video(video_bytes)
                 #st.video()
                 st.video(video_file)
                 st.success("Successfull")
