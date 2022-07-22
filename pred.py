@@ -107,7 +107,7 @@ def app():
                 predict_single_actionlstm(tfile.name, SEQUENCE_LENGTH)
                 st.video(video_bytes)
                 #st.video()
-                st.video(video_file)
+                #st.video(video_file)
                 st.success("Successfull")
                 #st.video(video_bytes)
             except:
