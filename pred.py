@@ -73,10 +73,10 @@ def app():
     with st.spinner('Model is being loaded..'):
         model = load_model()
     st.subheader("""**NOTE:** This app work best only when you uplode Video of ASL.""")
-    file = st.file_uploader("Please upload a Video of ASL Sign which You want to Translate")
+    f = st.file_uploader("Please upload a Video of ASL Sign which You want to Translate")
     st.set_option('deprecation.showfileUploaderEncoding', False)
 
-    if file is None:
+    if f is None:
         st.write("""Please upload an Video file""")
     else:
         if st.button("Predict"):
@@ -89,11 +89,11 @@ def app():
                 # Specify the list containing the names of the classes used for training. Feel free to choose any set of classes.
                 CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
                 #read video & frames from upload
-                video_file = open(file, 'rb')            
+                video_file = open(f, 'rb')            
                 video_bytes = video_file.read()
                 
                 tfile = tempfile.NamedTemporaryFile(delete=False) 
-                tfile.write(file.read())
+                tfile.write(f.read())
 
                 #CONVO+LSTM MODEL
                 # Specify the height and width to which each video frame will be resized in our dataset.
@@ -104,10 +104,10 @@ def app():
                 #input_video_file_path = file
                 
                 # Perform Single Prediction on the Test Video.
-                predict_single_actionlstm(tfile, SEQUENCE_LENGTH)
+                predict_single_actionlstm(tfile.name, SEQUENCE_LENGTH)
                 #st.video(video_bytes)
+                #st.video()
                 st.video(video_file)
-                #st.video(video_file)
                 st.success("Successfull")
                 #st.video(video_bytes)
             except:
