@@ -93,7 +93,7 @@ def app():
                 video_bytes = video_file.read()
                 
                 tfile = tempfile.NamedTemporaryFile(delete=False) 
-                tfile.write(f.read())
+                tfile.write(file.read())
 
                 #CONVO+LSTM MODEL
                 # Specify the height and width to which each video frame will be resized in our dataset.
