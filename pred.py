@@ -7,6 +7,7 @@ import keras.preprocessing
 import math
 import random
 import cv2
+import tempfile
 
 def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     '''
@@ -90,6 +91,9 @@ def app():
                 #read video & frames from upload
                 video_file = open(file, 'rb')            
                 video_bytes = video_file.read()
+                
+                tfile = tempfile.NamedTemporaryFile(delete=False) 
+                tfile.write(f.read())
 
                 #CONVO+LSTM MODEL
                 # Specify the height and width to which each video frame will be resized in our dataset.
@@ -100,8 +104,8 @@ def app():
                 #input_video_file_path = file
                 
                 # Perform Single Prediction on the Test Video.
-                predict_single_actionlstm("wait.mp4", SEQUENCE_LENGTH)
-                st.video(video_bytes)
+                predict_single_actionlstm(tfile, SEQUENCE_LENGTH)
+                #st.video(video_bytes)
                 st.video(video_file)
                 #st.video(video_file)
                 st.success("Successfull")
