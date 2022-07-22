@@ -17,4 +17,4 @@ def app():
 
       st.markdown('''### Linkedin: [Raiyan Firaz] (https://www.linkedin.com/in/raiyan-firaz-490b38129)''')
       
-      st.markdown('''### Repository Link:[Github Repo] (https://github.com/raiyan1437/)''')
+      st.markdown('''### Repository Link:[Github Repo] (https://github.com/raiyan1437/Sign_Language_Recognition-/)''')
