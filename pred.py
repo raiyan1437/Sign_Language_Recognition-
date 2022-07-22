@@ -18,14 +18,11 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     '''
     # Specify the list containing the names of the classes used for training. Feel free to choose any set of classes.
     CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
+    # Specify the height and width to which each video frame will be resized in our dataset.
     IMAGE_HEIGHT , IMAGE_WIDTH = 64, 64
     model = load_model()
     # Initialize the VideoCapture object to read from the video file.
-    #st.write("function")
     video_reader = cv2.VideoCapture(video_file_path)
-    #video_reader = video_file_path
-    #st.video(video_file)
-    #st.write("read")
     # Get the width and height of the video.
     original_video_width = int(video_reader.get(cv2.CAP_PROP_FRAME_WIDTH))
     original_video_height = int(video_reader.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -37,7 +34,6 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     video_frames_count = int(video_reader.get(cv2.CAP_PROP_FRAME_COUNT))
     # Calculate the interval after which frames will be added to the list.
     skip_frames_window = max(int(video_frames_count/SEQUENCE_LENGTH),1)
-    #st.write("before for")
     # Iterating the number of times equal to the fixed length of sequence.
     for frame_counter in range(SEQUENCE_LENGTH):
         # Set the current frame position of the video.
@@ -53,20 +49,17 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
         normalized_frame = resized_frame / 255
         # Appending the pre-processed frame into the frames list
         frames_list.append(normalized_frame)
-    #st.write("before pred")
     # Passing the  pre-processed frames to the model and get the predicted probabilities.
-    predicted_labels_probabilities =  model.predict(np.expand_dims(frames_list, axis = 0))[0]
-    #st.write(predicted_labels_probabilities)    
+    predicted_labels_probabilities =  model.predict(np.expand_dims(frames_list, axis = 0))[0]   
     # Get the index of class with highest probability.
     predicted_label = np.argmax(predicted_labels_probabilities)
-    #st.write(predicted_label)
     # Get the class name using the retrieved index.
     predicted_class_name = CLASSES_LIST[predicted_label]
     # Display the predicted action along with the prediction confidence.
     st.write(f'Action Predicted : {predicted_class_name}')
     st.write(f'Confidence : {predicted_labels_probabilities[predicted_label]}')
     # Release the VideoCapture object. 
-   # video_reader.release()
+    video_reader.release()
         
        
 def app():
@@ -82,30 +75,16 @@ def app():
         if st.button("Predict"):
             try:
                 #CONVO+LSTM MODEL
-                
                 # Specify the height and width to which each video frame will be resized in our dataset.
-                
                 SEQUENCE_LENGTH = 25
                 # Specify the list containing the names of the classes used for training. Feel free to choose any set of classes.
                 CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
                 #read video & frames from upload
                 video_file = open(f.name, 'rb')            
                 video_bytes = video_file.read()
-                #tfile = tempfile.NamedTemporaryFile(delete=False) 
-                #tfile.write(f.read())
-                #CONVO+LSTM MODEL
-                # Specify the height and width to which each video frame will be resized in our dataset.
-                #IMAGE_HEIGHT , IMAGE_WIDTH = 64, 64
-                #SEQUENCE_LENGTH = 25
                 # Perform Single Prediction on the Test Video.
                 predict_single_actionlstm(f.name, SEQUENCE_LENGTH)
                 st.success("Successfully Predicted")
                 st.video(video_bytes)
-                #IMAGE_HEIGHT , IMAGE_WIDTH = 64, 64
-                #input video
-                #input_video_file_path = file
-                #st.video()
-                #st.video(video_file)
-                #st.video(video_bytes)
             except:
-                st.error("Invalid Video Type For This Model")
+                st.error("Invalid Video Type For This Model Or The Uploaded video does not belong to ASL Category")
