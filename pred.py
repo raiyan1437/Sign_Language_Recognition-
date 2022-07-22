@@ -84,31 +84,28 @@ def app():
                 #CONVO+LSTM MODEL
                 
                 # Specify the height and width to which each video frame will be resized in our dataset.
-                IMAGE_HEIGHT , IMAGE_WIDTH = 64, 64
+                
                 SEQUENCE_LENGTH = 25
                 # Specify the list containing the names of the classes used for training. Feel free to choose any set of classes.
                 CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
                 #read video & frames from upload
                 video_file = open(f.name, 'rb')            
                 video_bytes = video_file.read()
-                
-                tfile = tempfile.NamedTemporaryFile(delete=False) 
-                tfile.write(f.read())
-
+                #tfile = tempfile.NamedTemporaryFile(delete=False) 
+                #tfile.write(f.read())
                 #CONVO+LSTM MODEL
                 # Specify the height and width to which each video frame will be resized in our dataset.
-                IMAGE_HEIGHT , IMAGE_WIDTH = 64, 64
-                SEQUENCE_LENGTH = 25
-                
+                #IMAGE_HEIGHT , IMAGE_WIDTH = 64, 64
+                #SEQUENCE_LENGTH = 25
+                # Perform Single Prediction on the Test Video.
+                predict_single_actionlstm(f.name, SEQUENCE_LENGTH)
+                st.success("Successfully Predicted")
+                st.video(video_bytes)
+                #IMAGE_HEIGHT , IMAGE_WIDTH = 64, 64
                 #input video
                 #input_video_file_path = file
-                
-                # Perform Single Prediction on the Test Video.
-                predict_single_actionlstm(tfile.name, SEQUENCE_LENGTH)
-                st.video(video_bytes)
                 #st.video()
                 #st.video(video_file)
-                st.success("Successfull")
                 #st.video(video_bytes)
             except:
                 st.error("Invalid Video Type For This Model")
