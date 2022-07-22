@@ -65,7 +65,7 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     st.write(f'Action Predicted : {predicted_class_name}')
     st.write(f'Confidence : {predicted_labels_probabilities[predicted_label]}')
     # Release the VideoCapture object. 
-    video_reader.release()
+   # video_reader.release()
         
        
 def app():
@@ -104,5 +104,6 @@ def app():
                 
                 st.video(video_file)
                 st.success("Successfull")
+                st.video(video_bytes)
             except:
                 st.error("Invalid Video Type For This Model")
