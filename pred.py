@@ -22,7 +22,8 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     model = load_model()
     # Initialize the VideoCapture object to read from the video file.
     #st.write("function")
-    video_reader = cv2.VideoCapture('help.mp4')
+    #video_reader = cv2.VideoCapture('help.mp4')
+    video_reader = video_file_path
     #st.write("read")
     # Get the width and height of the video.
     original_video_width = int(video_reader.get(cv2.CAP_PROP_FRAME_WIDTH))
@@ -87,7 +88,7 @@ def app():
                 # Specify the list containing the names of the classes used for training. Feel free to choose any set of classes.
                 CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
                 #read video & frames from upload
-                video_file = open('help.mp4', 'rb')            
+                video_file = open(file, 'rb')            
                 video_bytes = video_file.read()
 
                 #CONVO+LSTM MODEL
