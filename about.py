@@ -13,8 +13,8 @@ def app():
       st.markdown('''### Email:
       raiyan1437@gmail.com''')
 
-      st.write('''### GitHub: [Raiyan Firaz] (https://github.com/raiyan1437)''')
+      st.write(''' GitHub: [Raiyan Firaz] (https://github.com/raiyan1437)''')
 
-      st.write('''### Linkedin: [Raiyan Firaz] (https://www.linkedin.com/in/raiyan-firaz-490b38129)''')
+      st.write(''' Linkedin: [Raiyan Firaz] (https://www.linkedin.com/in/raiyan-firaz-490b38129)''')
       
-      st.write('''### Repository Link:[Github Repo] (https://github.com/raiyan1437/Sign_Language_Recognition-/)''')
+      st.write(''' Repository Link:[Github Repo] (https://github.com/raiyan1437/Sign_Language_Recognition-/)''')
