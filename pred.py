@@ -78,16 +78,16 @@ def app():
                 #CONVO+LSTM MODEL
                 # Specify the height and width to which each video frame will be resized in our dataset.
                 SEQUENCE_LENGTH = 25
-                st.write('working')
+                #st.write('working')
                 # Specify the list containing the names of the classes used for training. Feel free to choose any set of classes.
                 CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
                 #CLASSES_LIST = [ "BEAUTIFUL", "BOOK", "COMPUTER", "DRINK", "HAPPY", "HEALTHY", "HELP"]
                 #read video & frames from upload
                 video_file = open(f.name, 'rb')            
                 video_bytes = video_file.read()
-                st.write("file download")
+                #st.write("file download")
                 # Perform Single Prediction on the Test Video.
-                #predict_single_actionlstm(f.name, SEQUENCE_LENGTH)
+                predict_single_actionlstm(f.name, SEQUENCE_LENGTH)
                 st.success("Successfully Predicted")
                 st.video(video_bytes)
             except:
