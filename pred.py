@@ -17,7 +17,8 @@ def predict_single_actionlstm(video_file_path, SEQUENCE_LENGTH):
     SEQUENCE_LENGTH:  The fixed number of frames of a video that can be passed to the model as one sequence.
     '''
     # Specify the list containing the names of the classes used for training. Feel free to choose any set of classes.
-    CLASSES_LIST = [ "BEAUTIFUL", "BOOK", "COMPUTER", "DRINK", "HAPPY", "HEALTHY", "HELP"]
+    CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
+    #CLASSES_LIST = [ "BEAUTIFUL", "BOOK", "COMPUTER", "DRINK", "HAPPY", "HEALTHY", "HELP"]
     # Specify the height and width to which each video frame will be resized in our dataset.
     IMAGE_HEIGHT , IMAGE_WIDTH = 64, 64
     model = load_model()
@@ -78,8 +79,8 @@ def app():
                 # Specify the height and width to which each video frame will be resized in our dataset.
                 SEQUENCE_LENGTH = 25
                 # Specify the list containing the names of the classes used for training. Feel free to choose any set of classes.
-                #CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
-                CLASSES_LIST = [ "BEAUTIFUL", "BOOK", "COMPUTER", "DRINK", "HAPPY", "HEALTHY", "HELP"]
+                CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
+              #  CLASSES_LIST = [ "BEAUTIFUL", "BOOK", "COMPUTER", "DRINK", "HAPPY", "HEALTHY", "HELP"]
                 #read video & frames from upload
                 video_file = open(f.name, 'rb')            
                 video_bytes = video_file.read()
