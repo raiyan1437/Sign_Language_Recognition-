@@ -90,3 +90,4 @@ def app():
                 st.video(video_bytes)
             except:
                 st.error("Invalid Video Type For This Model Or The Uploaded video does not belong to ASL Category")
+                st.video(video_bytes)
