@@ -82,7 +82,7 @@ def app():
                 CLASSES_LIST = [ "who", "what", "wait", "help", "drink"]
                 #CLASSES_LIST = [ "BEAUTIFUL", "BOOK", "COMPUTER", "DRINK", "HAPPY", "HEALTHY", "HELP"]
                 #read video & frames from upload
-                video_file = open(f, 'rb')            
+                video_file = open(f.name, 'rb')            
                 video_bytes = video_file.read()
                 # Perform Single Prediction on the Test Video.
                 #predict_single_actionlstm(f.name, SEQUENCE_LENGTH)
